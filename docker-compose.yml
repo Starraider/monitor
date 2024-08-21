@@ -30,6 +30,15 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=SKom
       - DOCKER_INFLUXDB_INIT_BUCKET=coolify
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+  grafana:
+    image: grafana/grafana-oss:8.4.3
+    volumes:
+      - grafana-storage:/var/lib/grafana:rw
+    depends_on:
+      - influxdb
+    ports:
+      - 3000:80
 
 volumes:
+  grafana-storage:
   influxdbv2:
