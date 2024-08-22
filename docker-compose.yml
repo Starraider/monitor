@@ -26,6 +26,8 @@ services:
       - ./telegraf/telegraf.conf:/app/etc/telegraf/telegraf.conf:ro
     links:
       - influxdb
+    entrypoint:
+      - /entrypoint.sh
     environment:
       # Environment variables for telegraf
       - DOCKER_INFLUXDB_INIT_HOST=http://influxdb:8086
