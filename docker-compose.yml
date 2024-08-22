@@ -23,7 +23,9 @@ services:
       - influxdb
     volumes:
       # Mount for telegraf config
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf/telegraf.conf:/app/etc/telegraf/telegraf.conf:ro
+    links:
+      - influxdb
     environment:
       # Environment variables for telegraf
       - DOCKER_INFLUXDB_INIT_HOST=http://influxdb:8086
@@ -36,8 +38,10 @@ services:
       - grafana-storage:/var/lib/grafana:rw
     depends_on:
       - influxdb
+    links:
+      - influxdb
     ports:
-      - 3000:80
+      - 80:3000
 
 volumes:
   grafana-storage:
