@@ -23,7 +23,7 @@ services:
       - influxdb
     volumes:
       # Mount for telegraf config
-      - ./telegraf/:/etc/telegraf/telegraf.conf:ro
+      - /telegraf/:/etc/telegraf/telegraf.conf:ro
     environment:
       # Environment variables for telegraf
       - DOCKER_INFLUXDB_INIT_HOST=http://influxdb:8086
